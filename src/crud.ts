@@ -35,8 +35,9 @@ app.get('/Api/Product', async (req, res) => {
     const product = await Product.find(); // جلب كل المنتجات من القاعدة
     res.status(200).json(product); // إرسالها كـ JSON
   } catch (error) {
-    res.status(500).json({ message: error instanceof Error ? error.message : String(error) });
-  }
+  res.status(500).json({ message: error instanceof Error ? error.message : String(error) });
+}
+
 });
 
 
@@ -57,9 +58,10 @@ app.post('/Api/Product', async (req, res) => {
   try {
     const product = await Product.create(req.body); // إنشاء منتج جديد من البيانات القادمة
     res.status(200).json(product); // إرسال المنتج المُنشأ
-  } catch (eror) {
-    res.status(500).json({ message: eror instanceof Error ? eror.message : String(eror) });
-  }
+  } catch (error) {
+  res.status(500).json({ message: error instanceof Error ? error.message : String(error) });
+}
+
 });
 
 
@@ -76,9 +78,10 @@ app.put('/Api/Product/:id', async (req, res) => {
 
     const updatedproduct = await Product.findById(id); // (اختياري) جلب المنتج بعد التحديث
     res.status(200).json(product); // إرسال المنتج (هنا يرجع القديم غالبًا)
-  } catch (eror) {
-    res.status(500).json({ message: error instanceof Error ? error.message : String(error) });
-  }
+  } catch (error) {
+  res.status(500).json({ message: error instanceof Error ? error.message : String(error) });
+}
+
 });
 
 
@@ -110,9 +113,9 @@ if (!uri) {
       console.log('connect'); // تم الاتصال بنجاح
 
       // بدء تشغيل السيرفر على البورت المحدد في البيئة
-      app.listen(process.env.port, () => {
-        console.log(`http://localhost:${process.env.port}/`);
-      });
+      app.listen(process.env.PORT, () => {
+  console.log(`http://localhost:${process.env.PORT}/`);
+});
     })
     .catch((error) => {
       console.log(error); // طباعة أي خطأ في الاتصال
